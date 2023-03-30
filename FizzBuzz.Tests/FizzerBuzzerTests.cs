@@ -12,10 +12,10 @@ public class FizzBuzzerTests
     private void SetupToApplyExpectedTransform()
     {
         var transform = new Mock<Transform>();
-        transform.Setup(r => r.Match)
-            .Returns(i => i == ExpectedMatch);
-        transform.Setup(r => r.Transformation)
-            .Returns(i => ExpectedTransformed);
+        transform.Setup(r => r.Match(ExpectedMatch))
+            .Returns(true);
+        transform.Setup(r => r.Transformation(ExpectedMatch))
+            .Returns(ExpectedTransformed);
 
 
         fizzBuzzer = new FizzBuzzer(transform.Object);
@@ -41,16 +41,16 @@ public class FizzBuzzerTests
     public void ShouldApplyTransformsInOrder()
     {
         var firstTransform = new Mock<Transform>();
-        firstTransform.Setup(r => r.Match)
-            .Returns(i => i == ExpectedMatch);
-        firstTransform.Setup(r => r.Transformation)
-            .Returns(i => ExpectedTransformed);
+        firstTransform.Setup(r => r.Match(ExpectedMatch))
+            .Returns(true);
+        firstTransform.Setup(r => r.Transformation(ExpectedMatch))
+            .Returns(ExpectedTransformed);
 
         var secondTransform = new Mock<Transform>();
-        secondTransform.Setup(r => r.Match)
-            .Returns(i => i == ExpectedMatch);
-        secondTransform.Setup(r => r.Transformation)
-            .Returns(i => OtherTransformed);
+        secondTransform.Setup(r => r.Match(ExpectedMatch))
+            .Returns(true);
+        secondTransform.Setup(r => r.Transformation(ExpectedMatch))
+            .Returns(OtherTransformed);
 
         var fizzBuzzerOne = new FizzBuzzer(firstTransform.Object, secondTransform.Object);
         var fizzBuzzerTwo = new FizzBuzzer(secondTransform.Object, firstTransform.Object);

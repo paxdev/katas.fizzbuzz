@@ -10,10 +10,10 @@ public class TransformTests
     public TransformTests()
     {
         var transformMock = new Mock<Transform>();
-        transformMock.Setup(t => t.Match)
-            .Returns(i => i == ExpectedMatch);
-        transformMock.Setup(t => t.Transformation)
-            .Returns(i => ExpectedTransformed);
+        transformMock.Setup(t => t.Match(ExpectedMatch))
+            .Returns(true);
+        transformMock.Setup(t => t.Transformation(ExpectedMatch))
+            .Returns(ExpectedTransformed);
 
         transform = transformMock.Object;
     }

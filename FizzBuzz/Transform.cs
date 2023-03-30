@@ -2,8 +2,8 @@
 
 public abstract class Transform
 {
-    public abstract Func<int, bool> Match { get; }
-    public abstract Func<int, string> Transformation { get; }
+    public abstract bool Match(int i);
+    public abstract string Transformation(int i);
 
     public string Apply(int i) => 
         Match(i) 
