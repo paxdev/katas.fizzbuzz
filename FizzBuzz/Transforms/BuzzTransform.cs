@@ -1,11 +1,7 @@
 ﻿namespace FizzBuzz.Transforms;
 
-public class BuzzTransform : ITransform
+public class BuzzTransform : Transform
 {
-    public string Apply(int i)
-    {
-        return (i % 5 == 0) 
-            ? "Buzz" 
-            : string.Empty;
-    }
+    public override Func<int, bool> Match => i => i % 5 == 0;
+    public override Func<int, string> Transformation => i => "Buzz";
 }
