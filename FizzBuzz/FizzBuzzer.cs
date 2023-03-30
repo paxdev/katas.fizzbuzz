@@ -2,9 +2,9 @@ namespace FizzBuzz;
 
 public class FizzBuzzer
 {
-    private readonly IEnumerable<ITransform> transforms;
+    private readonly IEnumerable<Transform> transforms;
 
-    public FizzBuzzer(params ITransform[] transforms)
+    public FizzBuzzer(params Transform[] transforms)
     {
         this.transforms = transforms;
     }

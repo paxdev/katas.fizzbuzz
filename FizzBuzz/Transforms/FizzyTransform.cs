@@ -1,8 +1,8 @@
 ﻿namespace FizzBuzz.Transforms;
 
-public class FizzyTransform : ITransform
+public class FizzyTransform : Transform
 {
-    public string Apply(int i) => i.ToString().Contains('3') 
-        ? "Fizzy" 
-        : string.Empty;
+    public override Func<int, bool> Match => i => i.ToString().Contains('3');
+
+    public override Func<int, string> Transformation => i => "Fizzy";
 }
